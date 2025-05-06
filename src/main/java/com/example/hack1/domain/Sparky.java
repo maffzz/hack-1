@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "sparkies")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,5 +15,12 @@ public class Sparky {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    private String nombre;
+
     @OneToMany(mappedBy = "sparky", cascade = CascadeType.ALL)
-    private List<Empresa> empresas;}
+    private List<Empresa> empresas;
+
+    @OneToMany(mappedBy = "sparky", cascade = CascadeType.ALL)
+    private List<Usuario> administradores;
+}

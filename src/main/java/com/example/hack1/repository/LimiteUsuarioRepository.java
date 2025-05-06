@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface LimiteRepository extends JpaRepository<Limite, Long> {
+public interface LimiteUsuarioRepository extends JpaRepository<Limite, Long> {
     List<LimiteUsuario> findByUsuarioId(Long usuarioId);
     Optional<LimiteUsuario> findByUsuarioIdAndModelo(Long usuarioId, String modelo);
 }
