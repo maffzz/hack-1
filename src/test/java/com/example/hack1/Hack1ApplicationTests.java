@@ -5,9 +5,5 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class Hack1ApplicationTests {
-
     @Test
-    void contextLoads() {
-    }
-
-}
+    void contextLoads() {}}

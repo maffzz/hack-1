@@ -1,6 +1,6 @@
 package com.example.hack1.service;
 
-import com.example.hack1.domain.Usuario;
+import com.example.hack1.domain.User;
 import com.example.hack1.dto.JwtAuthenticationResponse;
 import com.example.hack1.dto.SigninRequest;
 import com.example.hack1.repository.UserRepository;
@@ -18,7 +18,7 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public JwtAuthenticationResponse signup(Usuario user) {
+    public JwtAuthenticationResponse signup(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         var jwt = jwtService.generateToken(user);

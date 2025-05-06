@@ -8,6 +8,4 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/usuario")
 @RequiredArgsConstructor
 public class UsuarioController {
-    private final UsuarioService usuarioService;
-
-}
+    private final UsuarioService usuarioService;}

@@ -1,6 +1,6 @@
 package com.example.hack1.controller;
 
-import com.example.hack1.domain.Usuario;
+import com.example.hack1.domain.User;
 import com.example.hack1.dto.JwtAuthenticationResponse;
 import com.example.hack1.dto.SigninRequest;
 import com.example.hack1.service.AuthenticationService;
@@ -19,7 +19,7 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/signup")
-    public ResponseEntity<JwtAuthenticationResponse> signup(@Valid @RequestBody Usuario request) {
+    public ResponseEntity<JwtAuthenticationResponse> signup(@Valid @RequestBody User request) {
         return ResponseEntity.ok(authenticationService.signup(request));}
 
     @PostMapping("/login")
