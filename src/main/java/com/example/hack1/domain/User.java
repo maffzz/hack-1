@@ -2,39 +2,36 @@ package com.example.hack1.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
-@Getter
-public class Usuario implements UserDetails {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Entity
+public class User implements UserDetails {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String nombreDeUsuario;
-
-    private String nombreCompleto;
-
-    private String correo;
-
-    @Column(nullable = false)
+    private String email;
     private String password;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
+
     private Role role;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserLimit> limits = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<AIRequest> requests = new ArrayList<>();
 
     private Boolean expired = false;
 
@@ -50,7 +47,11 @@ public class Usuario implements UserDetails {
 
     @Override
     public String getUsername() {
-        return nombreDeUsuario;}
+        return email;}
+
+    @Override
+    public String getPassword() {
+        return password;}
 
     @Override
     public boolean isAccountNonExpired() {
