@@ -1,7 +1,7 @@
 
 package com.example.hack1.service;
 
-import com.example.hack1.repository.UsuarioRepository;
+import com.example.hack1.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
-    private final UsuarioRepository repository;
+    private final UserRepository repository;
 
     @Override
     public UserDetails loadUserByUsername(String nombreDeUsuario) throws UsernameNotFoundException {
