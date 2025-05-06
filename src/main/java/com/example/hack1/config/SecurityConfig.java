@@ -1,6 +1,6 @@
 package com.example.hack1.config;
 
-import com.example.piatto_pc1.service.UserDetailsServiceImpl;
+import com.example.hack1.service.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -55,7 +55,8 @@ public class SecurityConfig {
     @Bean
     static RoleHierarchy roleHierarchy() {
         RoleHierarchyImpl hierarchy = new RoleHierarchyImpl();
-        hierarchy.setHierarchy("ADMIN > USER");
+        hierarchy.setHierarchy("ROLE_SPARKY_ADMIN > ROLE_COMPANY_ADMIN");
+        hierarchy.setHierarchy("ROLE_COMPANY_ADMIN > ROLE_SPARKY_MANAGER");
         return hierarchy;}
 
     @Bean

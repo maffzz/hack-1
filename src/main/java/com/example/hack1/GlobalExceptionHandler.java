@@ -1,15 +1,15 @@
 package com.example.hack1;
 
-import com.example.piatto_pc1.exception.BadRequest;
-import com.example.piatto_pc1.exception.Conflict;
-import com.example.piatto_pc1.exception.Error;
-import com.example.piatto_pc1.exception.NotFound;
+import com.example.hack1.exception.BadRequest;
+import com.example.hack1.exception.Conflict;
+import com.example.hack1.exception.NotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import com.example.hack1.exception.Error;
 
 import java.util.stream.Collectors;
 
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class GlobalExceptionHandler {
     @ExceptionHandler(BadRequest.class)
     public ResponseEntity<Error> handleBadRequest(BadRequest ex) {
-        Error error = new Error(
+        Error error = new com.example.hack1.exception.Error(
                 "bad request",
                 ex.getMessage(),
                 HttpStatus.BAD_REQUEST.value());

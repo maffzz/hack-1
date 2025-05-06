@@ -1,7 +1,7 @@
 package com.example.hack1.config;
 
-import com.example.piatto_pc1.service.JwtService;
-import com.example.piatto_pc1.service.UserDetailsServiceImpl;
+import com.example.hack1.service.JwtService;
+import com.example.hack1.service.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

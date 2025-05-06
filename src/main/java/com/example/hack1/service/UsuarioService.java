@@ -1,6 +1,6 @@
 package com.example.hack1.service;
 
-import com.example.piatto_pc1.repository.UsuarioRepository;
+import com.example.hack1.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

@@ -1,9 +1,9 @@
 package com.example.hack1.controller;
 
-import com.example.piatto_pc1.domain.Usuario;
-import com.example.piatto_pc1.dto.JwtAuthenticationResponse;
-import com.example.piatto_pc1.dto.SigninRequest;
-import com.example.piatto_pc1.service.AuthenticationService;
+import com.example.hack1.domain.Usuario;
+import com.example.hack1.dto.JwtAuthenticationResponse;
+import com.example.hack1.dto.SigninRequest;
+import com.example.hack1.service.AuthenticationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

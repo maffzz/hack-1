@@ -1,6 +1,6 @@
 package com.example.hack1.repository;
 
-import com.example.piatto_pc1.domain.Usuario;
+import com.example.hack1.domain.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
