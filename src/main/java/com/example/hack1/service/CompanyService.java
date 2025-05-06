@@ -1,8 +1,11 @@
 package com.example.hack1.service;
 
 import com.example.hack1.domain.*;
+import com.example.hack1.exception.Conflict;
+import com.example.hack1.exception.NotFound;
 import com.example.hack1.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.weaver.ast.Not;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +25,7 @@ public class CompanyService {
     @Transactional
     public Restriccion crearRestriccion(Long empresaId, Restriccion restriccion) {
         Empresa empresa = empresaRepository.findById(empresaId)
-                .orElseThrow(() -> new EntityNotFoundException("Empresa no encontrada"));
+                .orElseThrow(() -> new NotFound("Empresa no encontrada"));
         restriccion.setEmpresa(empresa);
         return restriccionRepository.save(restriccion);
     }
@@ -34,7 +37,7 @@ public class CompanyService {
     @Transactional
     public Restriccion actualizarRestriccion(Long restriccionId, Restriccion datos) {
         Restriccion restriccion = restriccionRepository.findById(restriccionId)
-                .orElseThrow(() -> new EntityNotFoundException("Restricción no encontrada"));
+                .orElseThrow(() -> new NotFound("Restricción no encontrada"));
         restriccion.setModelo(datos.getModelo());
         restriccion.setLimiteMensual(datos.getLimiteMensual());
         restriccion.setTokensMaximos(datos.getTokensMaximos());
@@ -50,7 +53,7 @@ public class CompanyService {
     @Transactional
     public Usuario crearUsuario(Long empresaId, Usuario usuario) {
         Empresa empresa = empresaRepository.findById(empresaId)
-                .orElseThrow(() -> new EntityNotFoundException("Empresa no encontrada"));
+                .orElseThrow(() -> new NotFound("Empresa no encontrada"));
         usuario.setEmpresa(empresa);
         return usuarioRepository.save(usuario);
     }
@@ -61,7 +64,7 @@ public class CompanyService {
 
     public Usuario obtenerUsuario(Long usuarioId) {
         return usuarioRepository.findById(usuarioId)
-                .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado"));
+                .orElseThrow(() -> new NotFound("Usuario no encontrado"));
     }
 
     @Transactional
@@ -97,8 +100,8 @@ public class CompanyService {
             }
 
             if (limite.getLimite() != null && limite.getConsumido() >= limite.getLimite()) {
-                throw new LimiteExcedidoException("Límite de solicitudes alcanzado para el modelo " + modelo);
+                throw new Conflict("Límite de solicitudes alcanzado para el modelo " + modelo);
             }
 
             if (limite.getTokensMaximos() != null &&
-                    (limite.get
+                    (limite.getConsumido() + tokensConsumidos) > limite.getTokensMaximos()

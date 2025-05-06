@@ -2,7 +2,7 @@ package com.example.hack1.service;
 
 import com.example.hack1.domain.*;
 import com.example.hack1.dto.ConsumoDTO;
-import com.example.hack1.exception.EntityNotFoundException;
+import com.example.hack1.exception.NotFound;
 import com.example.hack1.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -56,6 +56,6 @@ public class UserService {
     @Transactional(readOnly = true)
     public Usuario obtenerInformacionUsuario(Long usuarioId) {
         return usuarioRepository.findById(usuarioId)
-                .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado"));
+                .orElseThrow(() -> new NotFound("Usuario no encontrado"));
     }
 }

@@ -1,8 +1,9 @@
 package com.example.hack1.service;
 
 import com.example.hack1.domain.*;
-import com.example.hack1.exception.EntityNotFoundException;
-import com.example.hack1.exception.LimiteExcedidoException;
+import com.example.hack1.exception.Conflict;
+import com.example.hack1.exception.NotFound;
+import com.example.hack1.repository.EmpresaRepository;
 import com.example.hack1.repository.SolicitudIARepository;
 import com.example.hack1.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,7 @@ public class SolicitudIAService {
                                         int tokensConsumidos, String respuesta,
                                         String archivo, SolicitudIA.TipoSolicitud tipo) {
         Usuario usuario = usuarioRepository.findById(usuarioId)
-                .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado"));
+                .orElseThrow(() -> new NotFound("Usuario no encontrado"));
 
         Empresa empresa = usuario.getEmpresa();
         if (empresa == null || !empresa.isActiva()) {
@@ -35,7 +36,7 @@ public class SolicitudIAService {
 
         // Verificar límites
         if (!limiteService.verificarLimitesUsuario(usuario, modelo, tokensConsumidos)) {
-            throw new LimiteExcedidoException("Límite excedido para el modelo " + modelo);
+            throw new Conflict("Límite excedido para el modelo " + modelo);
         }
 
         // Registrar solicitud
@@ -61,7 +62,7 @@ public class SolicitudIAService {
 
     public List<String> obtenerModelosDisponibles(Long usuarioId) {
         Usuario usuario = usuarioRepository.findById(usuarioId)
-                .orElseThrow(() -> new EntityNotFoundException("Usuario no encontrado"));
+                .orElseThrow(() -> new NotFound("Usuario no encontrado"));
 
         // Modelos de restricciones de empresa + límites específicos del usuario
         List<String> modelosEmpresa = usuario.getEmpresa().getRestricciones().stream()
