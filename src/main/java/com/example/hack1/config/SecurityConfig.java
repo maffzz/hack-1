@@ -56,7 +56,7 @@ public class SecurityConfig {
     static RoleHierarchy roleHierarchy() {
         RoleHierarchyImpl hierarchy = new RoleHierarchyImpl();
         hierarchy.setHierarchy("ROLE_SPARKY_ADMIN > ROLE_COMPANY_ADMIN");
-        hierarchy.setHierarchy("ROLE_COMPANY_ADMIN > ROLE_SPARKY_MANAGER");
+        hierarchy.setHierarchy("ROLE_COMPANY_ADMIN > ROLE_USER");
         return hierarchy;}
 
     @Bean
