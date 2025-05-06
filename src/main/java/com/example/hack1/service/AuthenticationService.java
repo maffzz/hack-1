@@ -1,9 +1,9 @@
 package com.example.hack1.service;
 
-import com.example.piatto_pc1.domain.Usuario;
-import com.example.piatto_pc1.dto.JwtAuthenticationResponse;
-import com.example.piatto_pc1.dto.SigninRequest;
-import com.example.piatto_pc1.repository.UsuarioRepository;
+import com.example.hack1.domain.Usuario;
+import com.example.hack1.dto.JwtAuthenticationResponse;
+import com.example.hack1.dto.SigninRequest;
+import com.example.hack1.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
