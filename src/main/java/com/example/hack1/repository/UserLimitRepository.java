@@ -9,6 +9,6 @@ import java.util.Optional;
 
 public interface UserLimitRepository extends JpaRepository<UserLimit, Long> {
     List<UserLimit> findByUserId(Long userId);
-    Optional<UserLimit> findByUserAndModelProviderAndModelName(
-            User user, String provider, String modelName);
+    Optional<UserLimit> findByUserAndModelProviderAndModel(User user, String modelProvider, String model);
+
 }

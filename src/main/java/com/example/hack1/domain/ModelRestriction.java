@@ -17,4 +17,6 @@ public class ModelRestriction {
     private String modelProvider; // "OPENAI", "META", "DEEPSEEK", "GITHUB"
     private boolean allowed;
     private Integer dailyTokenLimit; // Límite diario de tokens por compañía
+
+    private String modelName;
 }
