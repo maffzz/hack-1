@@ -1,5 +1,11 @@
 package com.example.hack1.repository;
 
+import com.example.hack1.domain.Company;
+import com.example.hack1.domain.ModelRestriction;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
 public interface ModelRestrictionRepository extends JpaRepository<ModelRestriction, Long> {
     // Para gestión de restricciones
     List<ModelRestriction> findByCompanyId(Long companyId);
