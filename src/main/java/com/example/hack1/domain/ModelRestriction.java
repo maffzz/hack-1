@@ -10,14 +10,13 @@ public class ModelRestriction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String modelProvider;  // OpenAI, Claude, Meta, etc.
-    private String modelName;
-
-    private int maxRequestsPerWindow;
-    private int maxTokensPerWindow;
-    private int windowMinutes;  // Ventana de tiempo en minutos
-
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;
+
+    private String modelProvider; // "OPENAI", "META", "DEEPSEEK", "GITHUB"
+    private boolean allowed;
+    private Integer dailyTokenLimit; // Límite diario de tokens por compañía
+
+    private String modelName;
 }

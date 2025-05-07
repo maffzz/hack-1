@@ -6,6 +6,7 @@ import lombok.Data;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Data
@@ -29,4 +30,10 @@ public class Company {
     private List<User> users = new ArrayList<>();
 
     @OneToMany(mappedBy = "company")
-    private List<ModelRestriction> restrictions = new ArrayList<>();}
+    private List<ModelRestriction> restrictions = new ArrayList<>();
+
+    public List<String> getAllowedProviders() {
+        return restrictions.stream()
+                .filter(ModelRestriction::isAllowed)
+                .map(ModelRestriction::getModelProvider)
+                .collect(Collectors.toList());}}

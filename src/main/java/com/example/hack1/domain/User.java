@@ -2,6 +2,7 @@ package com.example.hack1.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,6 +14,7 @@ import java.util.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
+@Getter
 @Entity
 @Table(name = "usuarios")
 public class User implements UserDetails {
@@ -33,6 +35,11 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     private List<AIRequest> requests = new ArrayList<>();
+
+    private Integer tokensUsed = 0; // Tokens usados en total
+
+    public void addTokensUsed(int tokens) {
+        this.tokensUsed += tokens;}
 
     private Boolean expired = false;
 

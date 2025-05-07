@@ -1,4 +1,4 @@
-package com.example.hack1.domain;
+package com.example.hack1.dto;
 
 import lombok.Data;
 
