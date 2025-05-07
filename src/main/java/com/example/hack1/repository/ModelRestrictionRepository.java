@@ -13,6 +13,5 @@ public interface ModelRestrictionRepository extends JpaRepository<ModelRestricti
     boolean existsByCompanyAndModelProviderAndModelName(
             Company company, String provider, String modelName);
     Optional<Object> findByCompanyAndModelProviderAndModelName(Company company, String modelProvider, String modelName);
-
     void deleteByIdAndCompanyId(Long id, Long companyId);
 }

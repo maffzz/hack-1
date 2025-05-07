@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -34,4 +35,18 @@ public class AIRequest {
 
     @Column(columnDefinition = "JSON")
     private String multimodalDetails;
+
+    @Transient
+    private List<String> files;
+
+    @Transient
+    private boolean multimodal;
+
+    public boolean isMultimodal() {
+        return multimodal;
+    }
+
+    public List<String> getFiles() {
+        return files;
+    }
 }
