@@ -1,6 +1,6 @@
 package com.example.hack1.controller;
 
-import com.example.hack1.service.UsuarioService;
+import com.example.hack1.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,4 +8,4 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/usuario")
 @RequiredArgsConstructor
 public class UsuarioController {
-    private final UsuarioService usuarioService;}
+    private final UserService usuarioService;}
