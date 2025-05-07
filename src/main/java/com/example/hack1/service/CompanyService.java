@@ -2,15 +2,15 @@ package com.example.hack1.service;
 
 import com.example.hack1.domain.Company;
 import com.example.hack1.domain.Role;
+import com.example.hack1.domain.User;
 import com.example.hack1.repository.CompanyRepository;
 import com.example.hack1.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 @Service
 @Transactional
@@ -19,8 +19,11 @@ public class CompanyService {
     private CompanyRepository companyRepo;
     @Autowired private UserRepository userRepo;
 
-    public Company createCompany(Company company, SecurityProperties.User adminUser) {
-        adminUser.setRoles(Role.ROLE_COMPANY_ADMIN);
+    public List<Company> findAll() {
+        return companyRepo.findAll();}
+
+    public Company createCompany(Company company, User adminUser) {
+        adminUser.setRole(Role.ROLE_COMPANY_ADMIN);
         userRepo.save(adminUser);
 
         company.setAdmin(adminUser);

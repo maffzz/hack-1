@@ -5,6 +5,7 @@ import com.example.hack1.domain.Role;
 import com.example.hack1.domain.User;
 import com.example.hack1.domain.UserLimit;
 import com.example.hack1.exception.NotFound;
+import com.example.hack1.repository.CompanyRepository;
 import com.example.hack1.repository.UserLimitRepository;
 import com.example.hack1.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,14 @@ public class UserService {
     @Autowired
     private UserRepository userRepo;
     @Autowired private UserLimitRepository limitRepo;
+    @Autowired private CompanyRepository companyRepo;
 
     public User createUser(User user, Long companyId) {
-        user.setCompany(new Company(companyId));
-        user.setRole(Set.of(Role.ROLE_USER));
-        return userRepo.save(user);
-    }
+        Company com = companyRepo.findById(companyId).orElseThrow(
+                () -> new NotFound("Empresa no encontrada"));
+        user.setCompany(com);
+        user.setRole(Role.ROLE_USER);
+        return userRepo.save(user);}
 
     public void assignUserLimit(Long userId, UserLimit limit) {
         User user = userRepo.findById(userId)
