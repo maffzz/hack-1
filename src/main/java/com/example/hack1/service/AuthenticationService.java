@@ -27,8 +27,8 @@ public class AuthenticationService {
         return response;}
 
     public JwtAuthenticationResponse signin(SigninRequest request) throws IllegalArgumentException {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getNombreDeUsuario(), request.getPassword()));
-        var user = userRepository.findByNombreDeUsuario(request.getNombreDeUsuario());
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+        var user = userRepository.findByEmail(request.getUsername());
         var jwt = jwtService.generateToken(user);
         JwtAuthenticationResponse response = new JwtAuthenticationResponse();
         response.setToken(jwt);
