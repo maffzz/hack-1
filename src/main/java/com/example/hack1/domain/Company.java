@@ -23,7 +23,7 @@ public class Company {
 
     @OneToOne
     @JoinColumn(name = "admin_id")
-    private User admin;  // Administrador principal
+    private User admin;
 
     @OneToMany(mappedBy = "company")
     private List<User> users = new ArrayList<>();
