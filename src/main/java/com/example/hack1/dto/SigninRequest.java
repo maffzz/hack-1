@@ -1,20 +1,20 @@
 package com.example.hack1.dto;
 
 public class SigninRequest {
-    private String username;
+    private String email;
     private String password;
 
     public SigninRequest() {}
 
-    public SigninRequest(String nombreDeUsuario, String password) {
-        this.username = nombreDeUsuario;
+    public SigninRequest(String email, String password) {
+        this.email = email;
         this.password = password;}
 
     public String getUsername() {
-        return username;}
+        return email;}
 
-    public void setUsername(String username) {
-        this.username = username;}
+    public void setUsername(String email) {
+        this.email = email;}
 
     public String getPassword() {
         return password;}

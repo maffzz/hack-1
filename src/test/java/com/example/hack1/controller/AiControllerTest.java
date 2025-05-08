@@ -1,8 +1,6 @@
 package com.example.hack1.controller;
 
-import com.example.hack1.dto.ChatRequestDto;
-import com.example.hack1.dto.ChatResponseDto;
-import com.example.hack1.service.AiService;
+import com.example.hack1.service.ChatService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -15,14 +13,14 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(AiController.class)
+@WebMvcTest(ChatController.class)
 class AiControllerTest {
 
     @Autowired
     private MockMvc mvc;
 
     @MockBean
-    private AiService aiService;
+    private ChatService aiService;
 
     @Test
     void chat() throws Exception {

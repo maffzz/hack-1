@@ -1,6 +1,7 @@
 package com.example.hack1.controller;
 
 import com.example.hack1.dto.RestrictionDto;
+import com.example.hack1.service.ModelRestrictionService;
 import com.example.hack1.service.RestrictionService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ class CompanyRestrictionsControllerTest {
     private MockMvc mvc;
 
     @MockBean
-    private RestrictionService restrictionService;
+    private ModelRestrictionService restrictionService;
 
     @Test
     void createRestriction() throws Exception {

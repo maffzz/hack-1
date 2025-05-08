@@ -9,7 +9,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -19,7 +18,7 @@ class AiServiceTest {
     private GitHubModelsClient client;
 
     @InjectMocks
-    private AiService service;
+    private ChatService service;
 
     @Test
     void chat() {

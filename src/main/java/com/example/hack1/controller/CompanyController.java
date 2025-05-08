@@ -3,6 +3,7 @@ package com.example.hack1.controller;
 import com.example.hack1.domain.AIRequest;
 import com.example.hack1.domain.Company;
 import com.example.hack1.domain.User;
+import com.example.hack1.dto.CreateCompanyDTO;
 import com.example.hack1.exception.NotFound;
 import com.example.hack1.repository.AIRequestRepository;
 import com.example.hack1.repository.CompanyRepository;
@@ -28,10 +29,20 @@ public class CompanyController {
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_SPARKY_ADMIN')")
-    public ResponseEntity<Company> createCompany(@RequestBody Company company, @RequestBody User adminUser) {
+    public ResponseEntity<Company> createCompany(@RequestBody CreateCompanyDTO dto) {
+        User adminUser = new User();
+        adminUser.setEmail(dto.getAdmin().getEmail());
+        adminUser.setPassword(dto.getAdmin().getPassword()); // deberías codificarla si usas Spring Security
+
+        Company company = new Company();
+        company.setRuc(dto.getRuc());
+        company.setName(dto.getName());
+        company.setActive(dto.isActive());
+
         Company createdCompany = companyService.createCompany(company, adminUser);
         return ResponseEntity.created(URI.create("/companies/" + createdCompany.getId())).body(createdCompany);
     }
+
 
     @GetMapping
     @PreAuthorize("hasRole('ROLE_SPARKY_ADMIN')")

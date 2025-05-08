@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-// UserManagementController.java
 @RestController
 @RequestMapping("/api/company/users")
 @RequiredArgsConstructor
