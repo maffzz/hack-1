@@ -19,7 +19,7 @@ public class Company {
     private String ruc;
 
     private String name;
-    private LocalDate affiliationDate;
+    private LocalDate affiliationDate = LocalDate.now();
     private boolean active;
 
     @OneToOne

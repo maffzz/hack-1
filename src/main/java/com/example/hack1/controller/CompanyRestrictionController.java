@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-// CompanyRestrictionController.java
 @RestController
 @RequestMapping("/api/company/restrictions")
 @RequiredArgsConstructor

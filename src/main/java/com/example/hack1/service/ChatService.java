@@ -4,40 +4,38 @@ import com.azure.ai.inference.ChatCompletionsClient;
 import com.azure.ai.inference.ChatCompletionsClientBuilder;
 import com.azure.ai.inference.models.*;
 import com.azure.core.credential.AzureKeyCredential;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Collections;
 
 @Service
 public class ChatService {
-    private final ChatCompletionsClient client;
 
-    public ChatService() {
-        String key = System.getenv("AZURE_KEY");
+    @Value("${GITHUB_TOKEN}")
+    private String github_token;
+
+    public ResponseEntity<String> createRequest(String model, String requestText) {
+
         String endpoint = "https://models.github.ai/inference";
 
-        this.client = new ChatCompletionsClientBuilder()
-                .credential(new AzureKeyCredential(key))
+        ChatCompletionsClient client = new ChatCompletionsClientBuilder()
+                .credential(new AzureKeyCredential(github_token))
                 .endpoint(endpoint)
                 .buildClient();
-    }
 
-    public String chat(String userPrompt) {
-        List<ChatRequestMessage> messages = Arrays.asList(
-                new ChatRequestSystemMessage("You are a helpful assistant."),
-                new ChatRequestUserMessage(userPrompt)
+        ChatCompletionsOptions chatCompletionsOptions = new ChatCompletionsOptions(
+                Collections.singletonList(new ChatRequestUserMessage(requestText))
         );
+        chatCompletionsOptions.setModel(model);
 
-        ChatCompletionsOptions options = new ChatCompletionsOptions(messages);
-        String model = "openai/gpt-4.1-nano";
-        options.setModel(model);
+        ChatCompletions completions = client.complete(chatCompletionsOptions);
 
-        ChatCompletions completions = client.complete(options);
-        if (completions.getChoices() != null && !completions.getChoices().isEmpty()) {
-            return completions.getChoices().get(0).getMessage().getContent();
-        } else {
-            return "No se recibieron respuestas del modelo.";
-        }
+        String response = completions.getChoices().get(0).getMessage().getContent();
+
+        return ResponseEntity.ok(response);
+
     }
+
 }
